@@ -1,0 +1,22 @@
+{
+  "name": "shooping",
+  "description": "shop",
+  "main": "shop.php",
+  "authors": [
+    "lxc150896"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "cuong"
+  ],
+  "homepage": "https://github.com/lxc150896",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
