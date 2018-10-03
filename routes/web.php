@@ -23,10 +23,11 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function() {
         Route::get('home', 'HomeController@getHome');
         Route::group(['prefix' => 'category'], function () {
-            Route::get('/', 'CategoryController@getCate');
-            Route::post('/', 'CategoryController@postCate');
-            Route::get('edit/{id}', 'CategoryController@getEditCate');
-            Route::get('delete/{id}', 'CategoryController@getDeleteCate');
+            Route::get('/', 'CategoryController@getAllCategories')->name('category');
+            Route::post('/', 'CategoryController@postAllCategories');
+            Route::get('edit/{id}', 'CategoryController@getEditCategories')->name('editcategory');
+            Route::post('edit/{id}', 'CategoryController@postEditCategories');
+            Route::get('delete/{id}', 'CategoryController@getDeleteCategories');
         });
     });
 });
