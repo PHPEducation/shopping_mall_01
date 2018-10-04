@@ -33,6 +33,7 @@
             <li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> {{ trans('remember.Home') }}</a></li>
             <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> {{ trans('remember.Product') }}</a></li>
             <li><a href="{{ asset('admin/category') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>{{ trans('remember.Category') }}</a></li>
+            <li><a href="#"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>{{ trans('remember.Order') }}</a></li>
             <li role="presentation" class="divider"></li>
         </ul>
     </div><!--/.sidebar-->
