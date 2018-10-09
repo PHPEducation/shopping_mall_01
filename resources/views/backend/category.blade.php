@@ -18,7 +18,7 @@
                             {!! Form::open(array('route' => 'category', 'method' => 'POST')) !!}
                             <div class="form-group">
                                 <label>{{ trans('remember.Namecate') }}</label>
-                                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('remember.Namecate') ]) !!}
+                                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('remember.Namecate'), 'required']) !!}
                                 {{-- <input type="text" name="name" class="form-control" placeholder="Tên danh mục..."> --}}
                             </div>
                             <div class="form-group">
@@ -41,7 +41,7 @@
                                 <thead>
                                     <tr class="bg-primary">
                                       <th>{{ trans('remember.Namecate') }}</th>
-                                      <th class="opition">{{ trans('remember.Option') }}</th>
+                                      <th class="cate_cach">{{ trans('remember.option') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,8 +49,8 @@
                                 <tr>
                                     <td>{{ $category->name }}</td>
                                     <td>
-                                        <a href="{{ asset('admin/category/edit/' . $category->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>{{ trans('remember.Edit') }}</a>
-                                        <a href="{{ asset('admin/category/delete/' . $category->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>{{ trans('remember.Delete') }}</a>
+                                        <a href="{{ asset('admin/category/edit/' . $category->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>{{ trans('remember.edit') }}</a>
+                                        <a href="{{ asset('admin/category/delete/' . $category->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>{{ trans('remember.delete') }}</a>
                                     </td>
                                 </tr>
                                 @endforeach
