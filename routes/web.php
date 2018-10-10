@@ -23,19 +23,10 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function() {
         Route::get('home', 'HomeController@getHome');
         Route::group(['prefix' => 'category'], function () {
-            Route::get('/', 'CategoryController@getAllCategories')->name('category');
-            Route::post('/', 'CategoryController@postAllCategories');
-            Route::get('edit/{id}', 'CategoryController@getEditCategories')->name('editcategory');
-            Route::post('edit/{id}', 'CategoryController@postEditCategories');
-            Route::get('delete/{id}', 'CategoryController@getDeleteCategories');
-        });
-        Route::group(['prefix' => 'product'], function() {
-            Route::get('/', 'ProductController@getProduct');
-            Route::get('add', 'ProductController@getAddProduct')->name('addproduct');
-            Route::post('add', 'ProductController@postAddProduct');
-            Route::get('edit/{id}', 'ProductController@getEditProduct')->name('editproduct');
-            Route::post('edit/{id}', 'ProductController@postEditProduct');
-            Route::get('delete/{id}', 'ProductController@getDeleteProduct');
+            Route::get('/', 'CategoryController@getCate');
+            Route::post('/', 'CategoryController@postCate');
+            Route::get('edit/{id}', 'CategoryController@getEditCate');
+            Route::get('delete/{id}', 'CategoryController@getDeleteCate');
         });
     });
 });
