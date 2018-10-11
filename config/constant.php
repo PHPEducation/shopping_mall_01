@@ -1,4 +1,9 @@
 <?php
 return [
     'for' => '4',
+    'eight' => '8',
+    'sixteen' => '16',
+    'three' => '3',
+    'one' => '1',
+    'six' => '6',
 ];
