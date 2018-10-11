@@ -12,7 +12,7 @@
                 @if (session('status'))
                 <div class="alert alert-danger">{{ session('status') }}</div>
                 @endif
-                    {!! Form::open(array('route' => 'addproduct', 'method' => 'POST', 'enctype' => 'multipart/form-data')) !!}
+                    {!! Form::open(array('route' => 'addproduct', 'method' => 'POST', 'files' => true)) !!}
                         <div class="row" >
                             <div class="col-xs-6">
                                 <div class="form-group">
