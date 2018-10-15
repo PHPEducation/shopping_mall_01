@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Comment;
 
 class FrontendController extends Controller
 {
@@ -18,8 +20,34 @@ class FrontendController extends Controller
 
     public function getDetail($id)
     {
-        $data['item'] = Product::findOrFail($id);
+        $item = Product::findOrFail($id);
+        $comments = Comment::where('product_id', $id)->get();
+        $products = Product::where([
+            ['price', '>=', $item->price],
+            ['id', '<>', $id],
+            ['category_id', '=', $item->category_id],
+        ])->OrderBy('price', 'ASC')->take(config('constant.for'))->get();
 
-        return view('frontend.details', $data);
+        return view('frontend.details', compact('item', 'products', 'comments'));
+    }
+
+    public function getCategory($id)
+    {
+        $data['categoryName'] = Category::findOrFail($id);
+        $data['items'] = Product::where('category_id', $id)->orderBy('category_id', 'desc')->paginate(config('constant(.eight)'));
+
+        return view('frontend.category', $data);
+    }
+
+    public function postComment(Request $request, $id)
+    {
+        $comment = new Comment;
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->content = $request->content;
+        $comment->product_id = $id;
+        $comment->save();
+
+        return back();
     }
 }

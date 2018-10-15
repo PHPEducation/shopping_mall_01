@@ -15,11 +15,11 @@
 </style>
 <body>
     <!-- header -->
-    <div id="header" class="row">
+    <div id="header" class="row menu-area headroom header--fixed">
         <div class="container">
             <div id="logo" class="col-xs-6 col-sm-6 col-md-3 text-center">
                 <h1>
-                    {{-- <a href="#"><img class="imglogo" src="img/home/logo-zmobile.jpg"></a> --}}
+                    <a href="{{ asset('/') }}"><img src="img/home/homelogo.png"></a>
                 </h1>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-9">
@@ -56,15 +56,15 @@
                     <ul class="nav">
                         <li>{{ trans('frontend.listCategory') }}</li>
                         @foreach($categories as $item_category)
-                        <li><a href="#">{{ $item_category->name }}</a></li>
+                        <li><a href="{{ asset('category/' . $item_category->id . '/' . $item_category->slug . '.html') }}">{{ $item_category->name }}</a></li>
                         @endforeach()
                     </ul>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">{{ trans('frontend.see') }}</button>
+                    <button class="dropbtn">{{ trans('frontend.seeMore') }}</button>
                     <div class="dropdown-content">
                         @foreach($category as  $item)
-                        <a href="#">{{ $item->name }}</a>
+                        <a href="{{ asset('category/' . $item->id . '/' . $item->slug . '.html') }}">{{ $item->name }}">{{ $item->name }}</a>
                         @endforeach()
                     </div>
                 </div>
@@ -103,15 +103,11 @@
     <!-- footer -->
     <div id="footer" class="row">
         <div id="bot-footer">
-            <div class="container">
+            <div class="">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-center">
-                        <p>{{ trans('frontend.botFooterTop') }}</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-center">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                     <p>
-                        <span>{{ trans('frontend.botFooterBot') }}</span>
-                        <a href="#"><span class="glyphicon glyphicon-chevron-up"></span></a>
+                        <marquee behavior="right"><span>{{ trans('frontend.cap') }}</span></marquee>
                     </p>
                     </div>
                 </div>
@@ -145,6 +141,11 @@
             </div>
         </div>
     </div>
+    <div id="back-to-top" class="back-to-top" data-toggle="tooltip" data-placement="left" title="Trở lên đầu trang">
+        <span class="glyphicon glyphicon-circle-arrow-up text-primary"></span>
+    </div>
     <!-- end footer -->
 </body>
 </html>
+<script type="text/javascript" src="../headroom/headroom.min.js"></script>
+<script type="text/javascript" src="cssfrontend/fronend.js"></script>

@@ -12,7 +12,19 @@
 */
 
 Route::get('/', 'FrontendController@getHome');
+Route::get('/', 'FrontendController@getHome');
 Route::get('detail/{id}/{slug}.html', 'FrontendController@getDetail');
+Route::post('detail/{id}/{slug}.html', 'FrontendController@postComment');
+Route::get('category/{id}/{slug}.html', 'FrontendController@getCategory');
+Route::get('search', 'FrontendController@getSearch');
+Route::group(['prefix' => 'cart'], function() {
+    Route::get('add/{id}', 'CartController@getAddCart');
+    Route::get('show', 'CartController@getShowCart');
+    Route::get('delete/{id}', 'CartController@getDeleteCart');
+    Route::get('update', 'CartController@getUpdateCart');
+    Route::post('show', 'CartController@postComplete');
+});
+Route::get('complete', 'CartController@getComplete');
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'login', 'middleware' => 'CheckLogedIn'], function () {
         Route::get('/', 'LoginController@getLogin')->name('login');
