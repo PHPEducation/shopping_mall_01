@@ -7,4 +7,5 @@ return [
     'one' => '1',
     'six' => '6',
     'zero' => '0',
+    'avatar' => '../storage/app/avatar/'
 ];

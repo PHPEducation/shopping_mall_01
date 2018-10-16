@@ -24,11 +24,10 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-9">
                 <div id="search-bar" class="col-md-6 col-md-offset-1">
-                    {!! Form::open(array('method' => 'POST', 'role' => 'search', ['class' => 'navbar-form'], 'astion' => asset('search/'))) !!}
-                    {{-- <form class="navbar-form" role="search" method="get" action="{{ asset('search/') }}"> --}}
+                    {!! Form::open(array('action' => array('FrontendController@getSearch'), 'method' => 'GET', 'class' => 'navbar-form', 'role' => 'search')) !!}
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <input type="text" class="form-control" placeholder="Search" name="q">
+                                {!! Form::text('result', null, ['class' => 'form-control', 'placeholder' => 'Search']) !!}
                             </div>
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -42,8 +41,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
-                    <a class="display" href="#">{{ trans('frontend.cart') }}</a>
-                    <a href="#">{{ trans('frontend.zero') }}</a>
+                    <a class="display" href="{{ asset('cart/show') }}">{{ trans('frontend.cart') }}</a>
+                    <a href="{{ asset('cart/show') }}">{{ Cart::getTotalQuantity() }}</a>
                 </div>
             </div>
         </div>
