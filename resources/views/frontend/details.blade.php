@@ -95,24 +95,23 @@
         <div class="col-md-12">
             <h3>{{ trans('frontend.comment') }}</h3>
             <div class="col-md-9 comment">
-                <form method="post">
+                {!! Form::open(array('method' => 'POST')) !!}
                     <div class="form-group">
                         <label for="email">{{ trans('frontend.email') }}</label>
-                        <input required type="email" class="form-control" id="email" name="email">
+                        {!! Form::email('email', old('email'), ['class' => 'form-control', 'required']) !!}
                     </div>
                     <div class="form-group">
                         <label for="name">{{ trans('frontend.name') }}</label>
-                        <input required type="text" class="form-control" id="name" name="name">
+                        {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}                       
                     </div>
                     <div class="form-group">
                         <label for="cm">{{ trans('frontend.comment') }}</label>
-                        <textarea required rows="10" id="cm" class="form-control" name="content"></textarea>
+                        {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '10', 'required']) !!}
                     </div>
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-default" name="submit">{{ trans('frontend.send') }}</button>
+                        {!! Form::submit(trans('frontend.send'), ['class' => 'btn btn-default']) !!}
                     </div>
-                    {{ csrf_field() }}
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

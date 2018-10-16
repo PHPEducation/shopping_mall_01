@@ -24,7 +24,8 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-9">
                 <div id="search-bar" class="col-md-6 col-md-offset-1">
-                    <form class="navbar-form" role="search">
+                    {!! Form::open(array('method' => 'POST', 'role' => 'search', ['class' => 'navbar-form'], 'astion' => asset('search/'))) !!}
+                    {{-- <form class="navbar-form" role="search" method="get" action="{{ asset('search/') }}"> --}}
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <input type="text" class="form-control" placeholder="Search" name="q">
@@ -33,7 +34,7 @@
                                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
                 <div id="cart" class="col-md-3 col-md-offset-2 text-center">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -64,7 +65,7 @@
                     <button class="dropbtn">{{ trans('frontend.seeMore') }}</button>
                     <div class="dropdown-content">
                         @foreach($category as  $item)
-                        <a href="{{ asset('category/' . $item->id . '/' . $item->slug . '.html') }}">{{ $item->name }}">{{ $item->name }}</a>
+                        <a href="{{ asset('category/' . $item->id . '/' . $item->slug . '.html') }}">{{ $item->name }}</a>
                         @endforeach()
                     </div>
                 </div>
