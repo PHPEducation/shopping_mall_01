@@ -22,7 +22,7 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('show', 'CartController@getShowCart');
     Route::get('delete/{id}', 'CartController@getDeleteCart');
     Route::get('update', 'CartController@getUpdateCart');
-    Route::post('show', 'CartController@postComplete');
+    Route::post('show', 'CartController@postComplete')->name('cart');
 });
 Route::get('complete', 'CartController@getComplete');
 Route::group(['namespace' => 'Admin'], function () {

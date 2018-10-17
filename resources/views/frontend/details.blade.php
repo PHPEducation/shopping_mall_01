@@ -8,7 +8,7 @@
             <div class="clearfix"></div>
                 <h3>{{ $item->name_product }}</h3>
             <div id="product-img" class="col-xs-12 col-sm-12 col-md-3 text-center">
-                <img src="{{ asset('../storage/app/avatar/' . $item->img) }}">
+                <img src="{{ asset(config('constant.avatar') . $item->img) }}">
             </div>
             <div id="product-details" class="col-xs-12 col-sm-12 col-md-9">
                 <p>{{ trans('frontend.prices')}} <span class="price">{{ number_format($item->price, 0, ',', '.') }}</span></p>
@@ -73,7 +73,7 @@
             <h3>{{ trans('frontend.compare') }}</h3>
             @foreach($products as $product)
             <div class=" hoverimg col-xs-6 col-xs-offset-3 col-sm-offset-0 col-md-offset-0 col-sm-6 col-md-3 text-center post">
-                <a href="{{ asset('detail/' . $product->id . '/' . $product->slug . '.html') }}"><img src="{{ asset('../storage/app/avatar/' . $product->img) }}"></a>
+                <a href="{{ asset('detail/' . $product->id . '/' . $product->slug . '.html') }}"><img src="{{ asset(config('constant.avatar') . $product->img) }}"></a>
                 <p><a href="{{ asset('detail/' . $product->id . '/'.$product->slug . '.html') }}">{{ $product->name_product }}</a></p>
                 <span>{{ number_format($product->price, 0, ',', '.') }} {{ trans('frontend.price') }}</span>
                 <p>{{ trans('frontend.screen') }} {{ $product->screen }}</p>
