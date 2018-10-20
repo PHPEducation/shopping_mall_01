@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="cssbackend/style.css">
 <script src="js/lumino.glyphs.js"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="sure.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">  
@@ -34,7 +35,10 @@
             <li class="active"><a href="{{ asset('admin/home') }}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> {{ trans('remember.Home') }}</a></li>
             <li><a href="{{ asset('admin/category') }}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>{{ trans('remember.Category') }}</a></li>
             <li><a href="{{ asset('admin/product') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>{{ trans('remember.Product') }}</a></li>
-            <li><a href="#"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>{{ trans('remember.Order') }}</a></li>
+            <li><a href="{{ asset('admin/order') }}"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>{{ trans('remember.Order') }}</a></li>
+            @if( Auth::user()->level == config('constant.zero') )
+            <li><a href="{{ asset('admin/super') }}"><svg class="glyph stroked key"><use xlink:href="#stroked-key"></use></svg>admin</a></li>
+            @endif
             <li role="presentation" class="divider"></li>
         </ul>
     </div><!--/.sidebar-->
@@ -44,9 +48,7 @@
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
     <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>

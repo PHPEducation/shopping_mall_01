@@ -48,5 +48,18 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::post('edit/{id}', 'ProductController@postEditProduct');
             Route::get('delete/{id}', 'ProductController@getDeleteProduct');
         });
+        Route::group(['prefix' => 'order'], function() {
+            Route::get('/', 'OrderController@getOrder');
+            Route::get('detail/{id}', 'OrderController@getDetailOrder');
+            Route::get('status/{id}', 'OrderController@getStatusOrder');
+            Route::get('delete/{id}', 'OrderController@getDeleteOrder');
+        });
+        Route::group(['prefix' => 'super'], function() {
+            Route::get('/', 'SuperAdminController@getSuperAdmin');
+            Route::post('add', 'SuperAdminController@postAddAdmin')->name('addAdmin');
+            Route::get('edit/{id}', 'SuperAdminController@getEditAdmin');
+            Route::post('edit/{id}', 'SuperAdminController@postEditAdmin');
+            Route::get('delete/{id}', 'SuperAdminController@getDeleteAdmin');
+        });
     });
 });

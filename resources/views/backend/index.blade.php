@@ -15,7 +15,7 @@
                         <svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">120</div>
+                        <div class="large">{{ $product }}</div>
                         <div class="text-muted">{{ trans('remember.Product') }}</div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         <svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">52</div>
+                        <div class="large">{{ $comment }}</div>
                         <div class="text-muted">{{ trans('remember.Comment') }}</div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">25.2k</div>
+                        <div class="large">{{ $category }}</div>
                         <div class="text-muted">{{ trans('remember.Category') }}</div>
                     </div>
                 </div>
