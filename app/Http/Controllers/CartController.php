@@ -9,6 +9,7 @@ use Mail;
 use App\Models\Customer;
 use App\Models\Bill;
 use App\Models\BillDetail;
+use App\Models\Status;
 
 class CartController extends Controller
 {
@@ -78,13 +79,20 @@ class CartController extends Controller
         $bill->note = $request->note;
         $bill->save();
 
+        Status::create([
+            'bill_id' => $bill->id,
+            'status' => 1,
+            'note' => '',
+        ]);
+
         foreach ($data['cart'] as $key => $value) {
-            $billDetail = new BillDetail;
-            $billDetail->bill_id = $bill->id;
-            $billDetail->product_id = $key;
-            $billDetail->quantity = $value['quantity'];
-            $billDetail->unit_price = $value['price'];
-            $billDetail->save();
+            BillDetail::create([
+                'bill_id' => $bill->id,
+                'product_id' => $key,
+                'quantity' => $value['quantity'],
+                'unit_price' => $value['price'],
+                'name_product' => $value['name'],
+            ]);
         }
                
         Mail::send('frontend.email', $data, function ($message) use ($email) {

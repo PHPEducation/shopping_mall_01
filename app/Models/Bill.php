@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
-    protected $table = "bills";
+    protected $table = 'bills';
+    protected $fillable = [
+        'customer_id',
+        'total',
+        'note',
+    ];
 
     public function billDetail()
     {

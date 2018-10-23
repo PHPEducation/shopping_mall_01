@@ -19,7 +19,6 @@ class LoginController extends Controller
         $arr = [
             'email' => $request->email,
             'password' => $request->password,
-            'level' => 1,
         ];
         if ($request->remember == trans('remember.Remember Me')) {
             $remember = true;
