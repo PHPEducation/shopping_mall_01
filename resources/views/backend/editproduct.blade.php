@@ -21,7 +21,7 @@
                                 <div class="form-group" >
                                     <label>{{ trans('remember.Productimg') }}</label>
                                     {!! Form::file('img', ['class' => 'form-control hidden', 'id' => 'img', 'onchange' => 'changeImg(this)']) !!}
-                                    <img id="avatar" class="thumbnail" src="{{ asset('../storage/app/avatar/' . $product->img) }}">
+                                    <img id="avatar" class="thumbnail" src="{{ asset(config('constant.avatar') . $product->img) }}">
                                 </div>
                                 <div class="form-group" >
                                     <label>{{ trans('remember.accessories') }}</label>

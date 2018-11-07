@@ -35,7 +35,7 @@
                                         <td>{{ $product->name_product }}</td>
                                         <td>{{ number_format($product->price, 0, ',', '.') }}</td>
                                         <td>
-                                            <img class="img" src="{{ asset('../storage/app/avatar/' . $product->img) }}">
+                                            <img class="img" src="{{ asset(config('constant.avatar') . $product->img) }}">
                                         </td>
                                         <td>{{ $product->name }}</td>
                                         <td>

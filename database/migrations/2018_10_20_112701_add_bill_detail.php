@@ -26,7 +26,7 @@ class AddBillDetail extends Migration
     public function down()
     {
         Schema::table('bill_detail', function (Blueprint $table) {
-            
+            $table->dropColumn('name_product');
         });
     }
 }

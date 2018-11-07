@@ -45,6 +45,14 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'loyal_customer' => [
+            'driver' => 'session',
+            'provider' => 'loyal_customers',
+        ],
+        'loyal_customer-api' => [
+            'driver' => 'token',
+            'provider' => 'loyal_customers',
+        ],
     ],
 
     /*
@@ -70,10 +78,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'loyal_customers' => [
+            'driver' => 'eloquent',
+            'model' => App\LoyalCustomer::class,
+        ],
     ],
 
     /*
@@ -97,6 +105,10 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'loyal_customers' => [
+            'provider' => 'loyal_customers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
     ],
-
 ];
