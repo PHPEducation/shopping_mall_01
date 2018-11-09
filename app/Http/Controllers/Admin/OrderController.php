@@ -28,7 +28,7 @@ class OrderController extends Controller
 
     public function getStatusOrder($id)
     {
-        $status = DB::table('Status')->where('id', $id)->select('status')->first();
+        $status = DB::table('status')->where('id', $id)->select('status')->first();
         $data = $status->status + config('constant.one');
         $product = new Status;
         $arr['status'] = $data;

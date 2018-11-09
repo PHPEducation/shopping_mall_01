@@ -58,7 +58,7 @@ class ProductController extends Controller
             'sim' => $request->sim,
             'battery_capacity' => $request->battery,
         ]);
-        $request->img->storeAs('avatar', $nameimg);
+        $request->img->move(config('constant.avatar'), $nameimg);
         $request->session()->flash('status', trans('remember.addProduct'));
         
         return back();
@@ -99,7 +99,7 @@ class ProductController extends Controller
         if ($request->hasFile('img')) {
             $img = $request->img->getClientOriginalName();
             $arr['img'] = $img;
-            $request->img->storeAs('avatar', $img);
+            $request->img->move(config('constant.avatar'), $img);
         }
         $product::where('id', $id)->update($arr);
         $request->session()->flash('status', trans('remember.editProduct'));
