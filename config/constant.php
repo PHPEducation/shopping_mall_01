@@ -9,4 +9,6 @@ return [
     'zero' => '0',
     'avatar' => 'bower_components/avatar/',
     'two' => '2',
+    'ten' => '10',
+    'img' => 'img/home/',
 ];
