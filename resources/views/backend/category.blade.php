@@ -33,7 +33,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">{{ trans('remember.Listcategory') }}</div>
                     @if (session('status'))
-                    <div class="alert alert-danger">{{ session('status') }}</div>
+                    <div class="alert alert-success">{{ session('status') }}</div>
                     @endif
                     <div class="panel-body">
                         <div class="bootstrap-table">
