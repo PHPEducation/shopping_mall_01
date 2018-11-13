@@ -105,7 +105,16 @@ return [
     'lxc' => 'lxclxc',
     'search' => 'Search',
     'messageLogin' => 'Đăng ký thành công!',
-    'pass' => 'Password',
+    'pass' => 'Mật khẩu',
     'error' => 'Sai thông tin!',
     'title' => 'trở lên đầu trang',
+
+    'register' => 'register',
+    'loginAccout' => 'đăng ký tài khoản',
+    'confirmRegister' => 'Xác nhận mật khẩu không đúng',
+    'empty' => 'không được trống!',
+    'passConfig' => 'Xác nhận mật khẩu',
+    'firstName' => 'Tên',
+    'phoneCustomer' => 'Số điện thoại',
+    'addressCustomer' => 'Địa chỉ',
 ];

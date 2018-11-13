@@ -24,11 +24,12 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
+            'name' => 'required|max:255',
             'email' => 'unique:loyal_customers,email|required|string|email|max:255',
             'password' => 'required|string|min:3|confirmed',
             'phone' => 'required|max:12|min:9',
-            'address' => 'string',
+            'address' => 'required|string',
+            'password_confirmation' => 'required',
         ];
     }
 
@@ -40,6 +41,12 @@ class CustomerRequest extends FormRequest
             'password.min' => trans('frontend.passwordMin'),
             'phone.max' => trans('frontend.phoneMax'),
             'phone.min' => trans('frontend.phoneMin'),
+            'name.required' => trans('frontend.empty'),
+            'email.required' => trans('frontend.empty'),
+            'pasword.required' => trans('frontend.empty'),
+            'phone.required' => trans('frontend.empty'),
+            'address.required' => trans('frontend.empty'),
+            'password_confirmation.required' => trans('frontend.empty'),
         ];
     }
 }

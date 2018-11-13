@@ -106,4 +106,13 @@ return [
     'messageLogin' => 'Login successfully!',
     'error' => 'Invalid information!',
     'title' => 'up page',
+
+    'register' => 'register',
+    'loginAccout' => 'register account',
+    'confirmRegister' => 'Password was wrong',
+    'passConfig' => 'Password Config',
+    'firstName' => 'First Name',
+    'phoneCustomer' => 'Phone',
+    'addressCustomer' => 'Address',
+    
 ];
