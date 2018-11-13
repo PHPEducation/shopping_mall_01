@@ -109,4 +109,5 @@ return [
     'deleteAdmin' => 'bạn có chắc chắn muốn xóa admin này này',
     'existEmail' => 'email đã tồn tại',
     'deletedAdmin' => 'Bạn đã xóa một Admin',
+    'pass' => 'Password',
 ];
