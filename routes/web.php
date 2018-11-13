@@ -26,7 +26,7 @@ Route::group(['prefix' => 'cart'], function() {
 Route::group(['prefix' => 'user'], function() {
     route::get('/', 'UserController@getLogin')->name('customer');
     route::post('/', 'UserController@postLogin');
-    Route::get('register', 'UserController@getRegister');
+    Route::get('register', 'UserController@getRegister')->name('register');
     Route::post('register', 'UserController@postRegister');
     Route::get('logout', 'UserController@getLogout');
 });
