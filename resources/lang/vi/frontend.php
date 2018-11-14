@@ -117,4 +117,6 @@ return [
     'firstName' => 'Tên',
     'phoneCustomer' => 'Số điện thoại',
     'addressCustomer' => 'Địa chỉ',
+    'promotion' => 'Hãy chở thành khách hàng thân thiết của chúng tôi để nhận hàng ngàn quà tặng cùng vô vàng ưu đãi hấp dẫn bằng cách đăng nhập hệ thống để tích cho mình số điểm tương ứng khi mua hàng tại Kim Cương shop',
+    'confirms' => 'Xác nhận mua hàng Kim Cương shop',
 ];

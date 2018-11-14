@@ -14,6 +14,7 @@ class Customer extends Model
         'address',
         'phone',
         'note',
+        'loyal_id',
     ];
 
     public function bill()
