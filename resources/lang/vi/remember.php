@@ -1,5 +1,6 @@
 <?php
 return [
+    
     'Remember Me' => 'Lưu mật khẩu!',
     'Login' => 'Đăng nhập',
     'Administrator' => 'Quản trị shop',
@@ -73,14 +74,12 @@ return [
     'addAdmin' => 'Thêm Admin',
     'close' => 'close',
     'addemail' => 'Bạn đã thêm một admin mới',
-
     'customerId' => 'Mã khách hàng',
     'customer' => 'Tên khách hàng',
     'customerPhone' => 'Số điện thoại',
     'customerAddress' => 'Địa chỉ',
     'customerDate' => 'Ngày đặt hàng',
     'information' => 'Thông tin thêm',
-
     'listItems' => 'Chi tiết đơn hàng',
     'back' => 'Quay lại',
     'productName' => 'Tên sản phẩm',
@@ -95,7 +94,6 @@ return [
     'shipping' => 'Đang gửi hàng',
     'confirmationReceived' => 'Xác nhận đã nhận hàng',
     'received' => 'Đã nhận hàng',
-
     'listAdmin' => 'Danh sách Admin',
     'addAdmin' => 'Thêm admin',
     'email' => 'email',
@@ -103,11 +101,11 @@ return [
     'level' => 'Cấp bậc',
     'id' => 'id',
     'name' => 'Tên',
-
     'messageOrder' => 'bạn đã xóa một đơn hàng',
     'deleteCustomer' => 'bạn xóa khách hàng này đồng nghĩa bạn sẽ xóa cả đơn hàng của khách hàng này, bạn có chắc chắn muốn xóa!',
     'deleteAdmin' => 'bạn có chắc chắn muốn xóa admin này này',
     'existEmail' => 'email đã tồn tại',
     'deletedAdmin' => 'Bạn đã xóa một Admin',
+    'ErrEmpty' => 'Vui lòng nhập tên danh mục',
     'pass' => 'Password',
 ];

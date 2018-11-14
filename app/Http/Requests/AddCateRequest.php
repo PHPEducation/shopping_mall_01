@@ -24,8 +24,8 @@ class AddCateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
             'name' => 'unique:categories,name',
+            'name' => 'required:categories,name',
         ];
     }
 
@@ -33,6 +33,7 @@ class AddCateRequest extends FormRequest
     {
         return [
             'name.unique' => trans('remember.Errcate'),
+            'name.required' => trans('remember.ErrEmpty'),
         ];
     }
 }

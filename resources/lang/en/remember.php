@@ -1,5 +1,6 @@
 <?php
 return [
+    
     'Remember Me' => 'Remember Me!',
     'Login' => 'Login',
     'Administrator' => 'shop management',
@@ -73,14 +74,12 @@ return [
     'addAdmin' => 'Add admin',
     'close' => 'close',
     'addemail' => 'More admin success',
-
     'customerId' => 'customer code',
     'customer' => 'Customer name',
     'customerPhone' => 'Phone',
     'customerAddress' => 'Address',
     'customerDate' => 'Date',
     'information' => 'Information',
-
     'listItems' => 'Details product',
     'back' => 'Back',
     'productName' => 'Product Name',
@@ -95,7 +94,6 @@ return [
     'shipping' => 'shipping',
     'confirmationReceived' => 'Confirmation received',
     'received' => 'received',
-
     'listAdmin' => 'List admin',
     'addAdmin' => 'Add admin',
     'email' => 'email',
@@ -103,10 +101,11 @@ return [
     'level' => 'Level',
     'id' => 'id',
     'name' => 'name',
-
     'messageOrder' => 'you have deleted a single',
     'deleteCustomer' => 'Removing this customer means you will delete this customer order, you are sure to delete it!',
     'deleteAdmin' => 'Are you sure you want to delete this admin?',
     'existEmail' => 'Email already exists',
     'deletedAdmin' => 'You deleted an Admin',
+    'ErrEmpty' => 'Please enter a category name',
+
 ];
