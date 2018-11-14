@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         Category::create([
             'name' => $request->name,
-            'slug' => str_slug($request->slug),
+            'slug' => str_slug($request->name),
         ]);
         $request->session()->flash('status', trans('remember.Addcate'));
         

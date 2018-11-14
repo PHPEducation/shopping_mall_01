@@ -107,5 +107,5 @@ return [
     'existEmail' => 'email đã tồn tại',
     'deletedAdmin' => 'Bạn đã xóa một Admin',
     'ErrEmpty' => 'Vui lòng nhập tên danh mục',
-
+    'pass' => 'Password',
 ];

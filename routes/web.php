@@ -12,17 +12,23 @@
 */
 
 Route::get('/', 'FrontendController@getHome');
-Route::get('/', 'FrontendController@getHome');
 Route::get('detail/{id}/{slug}.html', 'FrontendController@getDetail');
 Route::post('detail/{id}/{slug}.html', 'FrontendController@postComment');
 Route::get('category/{id}/{slug}.html', 'FrontendController@getCategory');
-Route::get('search', 'FrontendController@getSearch');
+Route::get('search', 'FrontendController@getSearch')->name('search');
 Route::group(['prefix' => 'cart'], function() {
     Route::get('add/{id}', 'CartController@getAddCart');
     Route::get('show', 'CartController@getShowCart');
     Route::get('delete/{id}', 'CartController@getDeleteCart');
     Route::get('update', 'CartController@getUpdateCart');
     Route::post('show', 'CartController@postComplete')->name('cart');
+});
+Route::group(['prefix' => 'user'], function() {
+    route::get('/', 'UserController@getLogin')->name('customer');
+    route::post('/', 'UserController@postLogin');
+    Route::get('register', 'UserController@getRegister')->name('register');
+    Route::post('register', 'UserController@postRegister');
+    Route::get('logout', 'UserController@getLogout');
 });
 Route::get('complete', 'CartController@getComplete');
 Route::group(['namespace' => 'Admin'], function () {
