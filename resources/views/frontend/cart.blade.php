@@ -8,8 +8,9 @@
         <div class="col-md-12">
             <div class="clearfix"></div>
             <h3>{{ trans('frontend.cart') }}</h3>
+            <span class="khuyen">{{ trans('frontend.promotion') }}</span>
             @if(Cart::getTotalQuantity() >= 1)
-            <table class="table table-bordered .table-responsive text-center">
+            <table id="table_cart" class="table table-bordered .table-responsive text-center">
                 <tr class="active">
                     <td class="tdimg">{{ trans('frontend.descriptiveImage') }}</td>
                     <td class="tdproduct">{{ trans('frontend.nameProduct') }}</td>
@@ -46,6 +47,36 @@
     <div class="row list-product">
         <div class="col-md-9">
             <h3>{{ trans('frontend.purchase') }}</h3>
+            @if (Auth::guard('loyal_customer')->check())
+            @foreach($arrs as $arr)
+            {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
+                <div class="form-group">
+                    <label for="email">{{ trans('frontend.emailCustomer') }}</label>
+                    {!! Form::email('email', $arr->email, ['class' => 'form-control', 'id' => 'email', 'required', 'readonly']) !!}
+                    <!-- <p>{{ $arr->email }}</p> -->
+                </div>
+                <div class="form-group">
+                    <label for="name">{{ trans('frontend.theirNames') }}</label>
+                    {!! Form::text('name', $arr->name, ['class' => 'form-control', 'required']) !!}
+                </div>
+                <div class="form-group">
+                    <label for="phone">{{ trans('frontend.phoneUser') }}</label>
+                    {!! Form::number('phone', $arr->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
+                </div>
+                <div class="form-group">
+                    <label for="add">{{ trans('frontend.address') }}</label>
+                    {!! Form::text('add', $arr->address, ['class' => 'form-control', 'id' => 'add', 'required']) !!}
+                </div>
+                <div class="form-group">
+                    <label for="add">{{ trans('frontend.request') }}</label>
+                    {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => config('constant.ten'), 'id' => 'cm', 'required']) !!}
+                </div>
+                <div class="form-group text-right">
+                    {!! Form::submit(trans('frontend.orderFulfillment'), ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::close() !!}
+                @endforeach
+            @else
             {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('frontend.emailCustomer') }}</label>
@@ -70,7 +101,8 @@
                 <div class="form-group text-right">
                     {!! Form::submit(trans('frontend.orderFulfillment'), ['class' => 'btn btn-primary']) !!}
                 </div>
-                {!! Form::close() !!}
+            {!! Form::close() !!}
+            @endif
             @else
             <h2><div class="alert alert-danger">{{ trans('frontend.note') }}</div><h2>
             @endif
