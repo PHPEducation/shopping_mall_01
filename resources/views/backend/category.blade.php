@@ -33,7 +33,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">{{ trans('remember.Listcategory') }}</div>
                     @if (session('status'))
-                    <div class="alert alert-danger">{{ session('status') }}</div>
+                    <div class="alert alert-success">{{ session('status') }}</div>
                     @endif
                     <div class="panel-body">
                         <div class="bootstrap-table">
@@ -50,7 +50,9 @@
                                     <td>{{ $category->name }}</td>
                                     <td>
                                         <a href="{{ asset('admin/category/edit/' . $category->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>{{ trans('remember.edit') }}</a>
-                                        <a href="{{ asset('admin/category/delete/' . $category->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>{{ trans('remember.delete') }}</a>
+                                        <a onclick="return confirm( ' {{ __('frontend.delCate') }}')" href="{{ asset('admin/category/delete/' . $category->id) }}" class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash">
+                                            </span>{{ trans('remember.delete') }}</a>
                                     </td>
                                 </tr>
                                 @endforeach

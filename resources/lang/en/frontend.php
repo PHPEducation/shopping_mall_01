@@ -116,5 +116,5 @@ return [
     'addressCustomer' => 'Address',
     'promotion' => 'Let is become our loyal customers to receive thousands of gifts with attractive gold incentives by logging into the system to accumulate the corresponding points when buying goods at Diamond shop',
     'confirms' => 'Purchase confirmation Kim Cương shop',
-    
+    'delCate' => 'Are you sure you want to delete',
 ];

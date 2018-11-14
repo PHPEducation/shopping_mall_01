@@ -18,6 +18,7 @@ return [
     'Editcate' => 'Bạn đã sửa danh mục thành công!',
     'Deletecate' => 'Bạn đã xóa thành công một danh mục!',
     'Errcate' => 'Danh mục đã tồn tại',
+    'Emtycate' => 'Danh mục không được để trống',
     'Listcate' => 'Danh mục sản phẩm',
     'Addcategory' => 'Thêm danh mục',
     'Editcategory' => 'Sửa danh mục',
