@@ -6,10 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Repositories\Post\PostProductRepository;
 
 class FrontendController extends Controller
 {
-    //
+    protected $postProduct;
+
+    public function __construct(PostProductRepository $postProduct)
+    {
+        $this->postProduct = $postProduct;
+    }
+
     public function getHome()
     {
         $data['featured'] = Product::where('featured', config('constant.one'))->orderBy('id', 'desc')->take(config('constant.eight'))->get();
@@ -59,5 +66,12 @@ class FrontendController extends Controller
         $data['items'] = Product::where('name_product', 'like', '%' . $result . '%')->get();
 
         return view('frontend.search', $data);
+    }
+
+    public function getSearchAjax(Request $request)
+    {
+        $products = $this->postProduct->getSearchProduct($request);
+
+        return response()->json($products);
     }
 }

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="cssfrontend/frontend.css">
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="cssfrontend/searchajax.js"></script>
 </head>
 <style>
 </style>
@@ -17,7 +19,7 @@
     <!-- header -->
     <div id="header" class="row menu-area headroom header--fixed">
         <div id="menu_data" class="col-xs-6 col-sm-6 col-md-3 text-align">
-           <ul class="menu_data">
+         <ul class="menu_data">
             <li>@if (Auth::guard('loyal_customer')->check())
                 <a href="{{ asset('user/logout') }}">{{ trans('frontend.logout') }}</a>
                 @else
@@ -30,16 +32,14 @@
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div id="search-bar" class="col-md-6 col-md-offset-2">
-            {!! Form::open(array('route' => 'search', 'method' => 'GET', 'class' => 'navbar-form', 'role' => 'search')) !!}
-            <div class="input-group">
-                <div class="input-group-btn">
-                    {!! Form::text('result', null, ['class' => 'form-control', 'placeholder' => trans('frontend.search')]) !!}
-                </div>
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            <div class="box">
+                <div class="container-1">
+                    {!! Form::open(array('route' => 'search', 'method' => 'GET', 'class' => 'navbar-form', 'role' => 'search')) !!}
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    {!! Form::text('result', null, ['id' => 'search', 'class' => 'form-control', 'placeholder' => trans('frontend.search')]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
-            {!! Form::close() !!}
         </div>
         <div id="cart" class="col-md-3 col-md-offset-1 text-center">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
