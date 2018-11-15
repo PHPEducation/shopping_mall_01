@@ -120,4 +120,10 @@ return [
     'promotion' => 'Hãy chở thành khách hàng thân thiết của chúng tôi để nhận hàng ngàn quà tặng cùng vô vàng ưu đãi hấp dẫn bằng cách đăng nhập hệ thống để tích cho mình số điểm tương ứng khi mua hàng tại Kim Cương shop',
     'confirms' => 'Xác nhận mua hàng Kim Cương shop',
     'delCate' => 'bạn có chắc chắn muốn xóa danh mục này',
+    'point' => 'Điểm',
+    'apply' => 'áp dụng khuyến mãi:',
+    '0k' => '0k',
+    '1k' => '500k',
+    '2k' => '1 tr',
+    '3k' => '2 tr',
 ];
