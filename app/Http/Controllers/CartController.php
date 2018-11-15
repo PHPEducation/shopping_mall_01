@@ -53,6 +53,7 @@ class CartController extends Controller
             $data['arrs'] = LoyalCustomer::ShowCart()
                 ->where('loyal_customers.id', $user)
                 ->get();
+            $data['check'] = 1;
         }
 
         $data['total'] = Cart::getTotal();

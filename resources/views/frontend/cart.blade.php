@@ -16,6 +16,9 @@
                     <td class="tdproduct">{{ trans('frontend.nameProduct') }}</td>
                     <td class="tdproduct">{{ trans('frontend.quality') }}</td>
                     <td class="tdprice">{{ trans('frontend.unitPice') }}</td>
+                    @if (isset($check))
+                    <td>{{ trans('frontend.point') }}</td>
+                    @endif
                     <td class="tdprice">{{ trans('frontend.intoMoney') }}</td>
                     <td class="tdimg">{{ trans('frontend.delete') }}</td>
                 </tr>
@@ -29,6 +32,11 @@
                         </div>
                     </td>
                     <td><span class="price">{{ number_format($item->price, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
+                    @if (isset($check))
+                    @foreach($arrs as $arr)
+                    <td><span class="price">{{ $arr->point }}</span></td>   
+                    @endforeach
+                    @endif
                     <td><span class="price">{{ number_format($item->price * $item->quantity, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
                     <td><a href="{{ asset('cart/delete/' . $item->id) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
@@ -36,20 +44,38 @@
             </table>
             <div class="row" id="total-price">
                 <div class="col-md-12">
-                    {{ trans('frontend.totalPayment') }} <span class="total-price">{{ number_format($total, 0, ',', '.') }} {{ trans('frontend.price') }}</span>
-                    <a href="{{ asset('/') }}" class="my-btn btn">{{ trans('frontend.buyNext') }}</a>
-                    <a class="my-btn btn">{{ trans('frontend.update') }}</a>
-                    <a href="{{ asset('cart/delete/all') }}" class="my-btn btn">{{ trans('frontend.deleteCart') }}</a>
+                    <table>
+                        @if (isset($check))
+                        <tr>
+                            <td>{{ trans('frontend.apply') }}</td>
+                            <td><select>
+                                <option value="0">{{ trans('frontend.0k') }}</option>
+                                <option value="500">{{ trans('frontend.1k') }}</option>
+                                <option value="100">{{ trans('frontend.2k') }}</option>
+                                <option value="200">{{ trans('frontend.3k') }}</option>
+                            </select></td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <td>{{ trans('frontend.totalPayment') }}</td>
+                            <td><span class="total-price">{{ number_format($total, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="{{ asset('/') }}" class="my-btn btn">{{ trans('frontend.buyNext') }}</a>
+                                <a class="my-btn btn">{{ trans('frontend.update') }}</a>
+                                <a href="{{ asset('cart/delete/all') }}" class="my-btn btn">{{ trans('frontend.deleteCart') }}</a></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row list-product">
-        <div class="col-md-9">
-            <h3>{{ trans('frontend.purchase') }}</h3>
-            @if (Auth::guard('loyal_customer')->check())
-            @foreach($arrs as $arr)
-            {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
+        <div class="row list-product">
+            <div class="col-md-9">
+                <h3>{{ trans('frontend.purchase') }}</h3>
+                @if (isset($check))
+                @foreach($arrs as $arr)
+                {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('frontend.emailCustomer') }}</label>
                     {!! Form::email('email', $arr->email, ['class' => 'form-control', 'id' => 'email', 'required', 'readonly']) !!}
@@ -76,8 +102,8 @@
                 </div>
                 {!! Form::close() !!}
                 @endforeach
-            @else
-            {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
+                @else
+                {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('frontend.emailCustomer') }}</label>
                     {!! Form::email('email', old('email'), ['class' => 'form-control', 'id' => 'email', 'required']) !!}
@@ -101,12 +127,12 @@
                 <div class="form-group text-right">
                     {!! Form::submit(trans('frontend.orderFulfillment'), ['class' => 'btn btn-primary']) !!}
                 </div>
-            {!! Form::close() !!}
-            @endif
-            @else
-            <h2><div class="alert alert-danger">{{ trans('frontend.note') }}</div><h2>
-            @endif
+                {!! Form::close() !!}
+                @endif
+                @else
+                <h2><div class="alert alert-danger">{{ trans('frontend.note') }}</div><h2>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 @stop
