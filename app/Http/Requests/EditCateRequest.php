@@ -24,7 +24,7 @@ class EditCateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:categories,name, ' . $this->segment(config('constant.for')) . ',id',
+            'name' => 'required|unique:categories,name, ' . $this->segment(config('constant.for')) . ',id',
         ];
     }
 
@@ -32,6 +32,7 @@ class EditCateRequest extends FormRequest
     {
         return [
             'name.unique' => trans('remember.Errcate'),
+            'name.required' => trans('remember.Emtycate'),
         ];
     }
 }

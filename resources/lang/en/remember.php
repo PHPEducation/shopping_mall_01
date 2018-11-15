@@ -18,6 +18,7 @@ return [
     'Editcate' => 'you have Edit a list to!',
     'Deletecate' => 'you have delete a list to!',
     'Errcate' => 'existing directory',
+    'Emtycate' => 'Please enter a directory name',
     'Listcate' => 'product portfolio',
     'Addcategory' => 'add category',
     'Editcategory' => 'add category',
