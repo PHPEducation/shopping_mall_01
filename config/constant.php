@@ -11,4 +11,5 @@ return [
     'two' => '2',
     'ten' => '10',
     'img' => 'img/home/',
+    'five' => '5',
 ];

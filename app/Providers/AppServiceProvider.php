@@ -44,7 +44,10 @@ class AppServiceProvider extends ServiceProvider
         \App\Repositories\Post\PostBillInterface::class,
         \App\Repositories\Post\PostBillRepository::class,
         \App\Repositories\Post\PostStatusInterface::class,
-        \App\Repositories\Post\PostStatusRepository::class
+        \App\Repositories\Post\PostStatusRepository::class,
+
+        \App\Repositories\Post\PostProductInterface::class,
+        \App\Repositories\Post\PostProductRepository::class
     );
     }
 }
