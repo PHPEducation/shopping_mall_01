@@ -33,6 +33,6 @@ class LoyalCustomer extends Authenticatable
     public function scopeShowCart($query)
     {
         return $query->join('informations', 'loyal_customers.id', '=', 'informations.loyal_id')
-            ->select('email', 'name', 'address', 'phone', 'point');
+            ->select('informations.id', 'email', 'name', 'address', 'phone', 'point');
     }
 }

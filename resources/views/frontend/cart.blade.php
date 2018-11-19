@@ -3,13 +3,15 @@
 @section('main')
 <link rel="stylesheet" href="css/cart.css">
 @include('frontend.js.cart')
+@include('frontend.js.discount')
 <div id="wrap-inner" class="col-md-9">
+    {!! Form::open(array('route' => 'cart', 'method' => 'POST', 'id' => 'form2')) !!}
     <div class="row list-product">
         <div class="col-md-12">
             <div class="clearfix"></div>
             <h3>{{ trans('frontend.cart') }}</h3>
             <span class="khuyen">{{ trans('frontend.promotion') }}</span>
-            @if(Cart::getTotalQuantity() >= 1)
+            @if(Cart::getTotalQuantity() >=  config('constant.one'))
             <table id="table_cart" class="table table-bordered .table-responsive text-center">
                 <tr class="active">
                     <td class="tdimg">{{ trans('frontend.descriptiveImage') }}</td>
@@ -31,13 +33,13 @@
                             <input class="form-control" type="number" value="{{ $item->quantity }}" min="1" onchange="updateCart(this.value, '{{ $item->id }}')">
                         </div>
                     </td>
-                    <td><span class="price">{{ number_format($item->price, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
+                    <td><span class="price">{{ number_format($item->price, config('constant.zero'), ',', '.') }} {{ trans('frontend.price') }}</span></td>
                     @if (isset($check))
                     @foreach($arrs as $arr)
                     <td><span class="price">{{ $arr->point }}</span></td>   
                     @endforeach
                     @endif
-                    <td><span class="price">{{ number_format($item->price * $item->quantity, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
+                    <td><span class="price">{{ number_format($item->price * $item->quantity, config('constant.zero'), ',', '.') }} {{ trans('frontend.price') }}</span></td>
                     <td><a href="{{ asset('cart/delete/' . $item->id) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
                 @endforeach
@@ -45,21 +47,26 @@
             <div class="row" id="total-price">
                 <div class="col-md-12">
                     <table>
-                        @if (isset($check))
-                        <tr>
-                            <td>{{ trans('frontend.apply') }}</td>
-                            <td><select>
-                                <option value="0">{{ trans('frontend.0k') }}</option>
-                                <option value="500">{{ trans('frontend.1k') }}</option>
-                                <option value="100">{{ trans('frontend.2k') }}</option>
-                                <option value="200">{{ trans('frontend.3k') }}</option>
-                            </select></td>
-                        </tr>
-                        @endif
                         <tr>
                             <td>{{ trans('frontend.totalPayment') }}</td>
-                            <td><span class="total-price">{{ number_format($total, 0, ',', '.') }} {{ trans('frontend.price') }}</span></td>
+                            <td><span class="total-price">{{ number_format($total, config('constant.zero'), ',', '.') }} {{ trans('frontend.price') }}</span></td>
                         </tr>
+                        @if (isset($check))
+                        <tr>
+                            <td>{{ trans('frontend.apply') }}
+                                {!! Form::select('discount', array(
+                                    config('constant.oneHundredThousand') => config('constant.zero'),
+                                    config('constant.twoHundredThousand') => config('constant.oneHundredThousand'),
+                                    config('constant.threeHundredThousand') => config('constant.twoHundredThousand'),
+                                    config('constant.forHundredThousand') => config('constant.threeHundredThousand'),
+                                    config('constant.fiveHundredThousand') => config('constant.forHundredThousand'),
+                                    config('constant.sixHundredThousand') => config('constant.fiveHundredThousand'),
+                                ), 's', ['id' => 'cantry']) 
+                                !!}
+                            </td>
+                            <td id="promotion">{{ $total }} {{ trans('frontend.price') }}</td>
+                        </tr>
+                        @endif
                         <tr>
                             <td><a href="{{ asset('/') }}" class="my-btn btn">{{ trans('frontend.buyNext') }}</a>
                                 <a class="my-btn btn">{{ trans('frontend.update') }}</a>
@@ -75,7 +82,6 @@
                 <h3>{{ trans('frontend.purchase') }}</h3>
                 @if (isset($check))
                 @foreach($arrs as $arr)
-                {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('frontend.emailCustomer') }}</label>
                     {!! Form::email('email', $arr->email, ['class' => 'form-control', 'id' => 'email', 'required', 'readonly']) !!}
@@ -97,13 +103,8 @@
                     <label for="add">{{ trans('frontend.request') }}</label>
                     {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => config('constant.ten'), 'id' => 'cm', 'required']) !!}
                 </div>
-                <div class="form-group text-right">
-                    {!! Form::submit(trans('frontend.orderFulfillment'), ['class' => 'btn btn-primary']) !!}
-                </div>
-                {!! Form::close() !!}
                 @endforeach
                 @else
-                {!! Form::open(array('route' => 'cart', 'method' => 'POST')) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('frontend.emailCustomer') }}</label>
                     {!! Form::email('email', old('email'), ['class' => 'form-control', 'id' => 'email', 'required']) !!}
@@ -124,15 +125,13 @@
                     <label for="add">{{ trans('frontend.request') }}</label>
                     {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => '10', 'id' => 'cm', 'required']) !!}
                 </div>
-                <div class="form-group text-right">
-                    {!! Form::submit(trans('frontend.orderFulfillment'), ['class' => 'btn btn-primary']) !!}
-                </div>
-                {!! Form::close() !!}
                 @endif
                 @else
                 <h2><div class="alert alert-danger">{{ trans('frontend.note') }}</div><h2>
-                @endif
+                    @endif
+                </div>
             </div>
+            {!! Form::submit(trans('frontend.orderFulfillment'), ['id' => 'discount', 'class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
         </div>
-    </div>
-@stop
+        @stop

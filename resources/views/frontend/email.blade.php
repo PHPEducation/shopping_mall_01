@@ -1,3 +1,4 @@
+<base href="{{ asset('bower_components/frontend') }}/">
 <link rel="stylesheet" href="css/email.css">
 <font face="Arial">
     <div class="title">
@@ -43,6 +44,14 @@
             <tr>
                 <td>{{ trans('frontend.totalMoney') }}</td>
                 <td class="total">{{ number_format($total, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td>{{ trans('frontend.discount') }}</td>
+                <td>{{ $discount }}</td>
+            </tr>
+            <tr>
+                <td>{{ trans('frontend.afterPromotion') }}</td>
+                <td>{{ number_format($after_discount, 0, ',', '.') }}</td>
             </tr>
         </table>
     </div>

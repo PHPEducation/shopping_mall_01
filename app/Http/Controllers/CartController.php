@@ -17,17 +17,19 @@ use App\Repositories\Post\PostCustomersRepository;
 use App\Repositories\Post\PostBillRepository;
 use App\Repositories\Post\PostBillDetailRepository;
 use App\Repositories\Post\PostStatusRepository;
+use App\Repositories\Post\PostEloquentRepository;
 
 class CartController extends Controller
 {
-    protected $postCustomers, $postBill, $postBillDetail, $postStatus;
+    protected $postCustomers, $postBill, $postBillDetail, $postStatus, $postRepository;
 
-    public function __construct(PostCustomersRepository $postCustomers, PostBillRepository $postBill, PostBillDetailRepository $postBillDetail, PostStatusRepository $postStatus)
+    public function __construct(PostCustomersRepository $postCustomers, PostBillRepository $postBill, PostBillDetailRepository $postBillDetail, PostStatusRepository $postStatus, PostEloquentRepository $postRepository)
     {
         $this->postCustomers = $postCustomers;
         $this->postBill = $postBill;
         $this->postBillDetail = $postBillDetail;
         $this->postStatus = $postStatus;
+        $this->postRepository = $postRepository;
     }
 
     public function getAddCart($id)
@@ -51,9 +53,17 @@ class CartController extends Controller
         if (Auth::guard('loyal_customer')->check()) {
             $user = Auth::guard('loyal_customer')->id();
             $data['arrs'] = LoyalCustomer::ShowCart()
-                ->where('loyal_customers.id', $user)
-                ->get();
-            $data['check'] = 1;
+            ->where('loyal_customers.id', $user)
+            ->get();
+            $items = LoyalCustomer::ShowCart()
+            ->where('loyal_customers.id', $user)
+            ->value('point');
+            $data['check'] = config('constant.one');
+            $promotion = $items;
+            $data['promotionLevel'] = (integer) ($promotion / config('constant.oneHundred'));
+            if ($promotion > config('constant.fiveHundred')) {
+                $data['promotionLevel'] = config('constant.five');
+            }            
         }
 
         $data['total'] = Cart::getTotal();
@@ -85,24 +95,58 @@ class CartController extends Controller
 
     public function postComplete(Request $request)
     {
+        $data['total'] = Cart::getTotal(); 
+        $data['cart'] = Cart::getcontent();
+
         if (Auth::guard('loyal_customer')->check()) {
             $user = LoyalCustomer::findOrFail(Auth::guard('loyal_customer')->id());
             $email = $user->email;
             $id = $user->id;
             $data['info'] = $request->all();
+            $data['discount'] = ($request->discount) - config('constant.oneHundredThousand');
+            $data['after_discount'] = $data['total'] - $data['discount'];
+            if ($data['discount'] != config('constant.zero')) {
+                $points = LoyalCustomer::ShowCart()
+                ->where('loyal_customers.id', $id)
+                ->first();
+                if ($points != null) {
+                    foreach ($points as $key => $value) {
+                        $point = $points['point'] - ($data['discount'] / config('constant.oneThousand'));
+                        if ($point > config('constant.zero')) {
+                            $this->postRepository->update($points['id'], $point);
+                        } else {
+                            $point = config('constant.zero');
+                            $this->postRepository->update($points['id'], $point);
+                        }
+                    }
+                }
+            } else {
+                $point = (integer) ($data['total'] / config('constant.oneMilion'));
+                if ($point > config('constant.zero')) {
+                    $points = LoyalCustomer::ShowCart()
+                    ->where('loyal_customers.id', $id)
+                    ->first();
+                    if ($points != null) {
+                        foreach ($points as $key => $value) {
+                            $pointDiscount = $points['point'] + $point;
+                            $this->postRepository->update($points['id'], $pointDiscount);
+                        }
+                    }
+                }
+            }
+
         } else {
             $data['info'] = $request->all();
             $email = $request->email;
             $id = null;
+            $data['discount'] = config('constant.zero');
+            $data['after_discount'] = $data['total'];
         }
-
-        $data['total'] = Cart::getTotal(); 
-        $data['cart'] = Cart::getcontent();
 
         $customer = $this->postCustomers->getAddCustomers($request, $id);
         $idBill = $customer->id;
 
-        $bill = $this->postBill->getAddBill($request, $idBill, $data['total']);
+        $bill = $this->postBill->getAddBill($request, $idBill, $data['total'], $data['discount'], $data['after_discount']);
         $idStatus = $bill->id;
 
         $this->postStatus->getAddStatus($idStatus);
@@ -126,5 +170,27 @@ class CartController extends Controller
     public function getComplete()
     {
         return view('frontend.complete');
+    }
+
+    function fetchDiscount(Request $request)
+    {
+        if($request->get('query'))
+        {
+            $user = Auth::guard('loyal_customer')->id();
+            $point = LoyalCustomer::ShowCart()
+            ->where('loyal_customers.id', $user)
+            ->value('point');
+            $content = Cart::getTotal();
+            $query = ($request->get('query')) - config('constant.oneHundredThousand');
+            if ($query / 10000 < $point) {
+                $data = $content - $query;
+
+                return $data;
+            } else {
+                
+                return $content;
+            }
+        }
+        $query = $query->get('query');
     }
 }
