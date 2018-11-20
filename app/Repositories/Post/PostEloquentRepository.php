@@ -29,4 +29,16 @@ class PostEloquentRepository extends EloquentRepository implements PostRepositor
             'loyal_id' => $id,
         ]);
     }
+
+    public function update($id, $point)
+    {
+        $result = $this->findId($id);
+        if ($result) {
+            $result->update(['point' => $point]);
+
+            return $result;
+        }
+
+        return false;
+    }
 }

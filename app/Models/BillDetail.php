@@ -7,13 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BillDetail extends Model
 {
     protected $table = 'bill_detail';
-    protected $fillable = [
-        'bill_id',
-        'product_id',
-        'quantity',
-        'unit_price',
-        'name_product',
-    ];
+    protected $guarded = ['id'];
 
     public function product()
     {

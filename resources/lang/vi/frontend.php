@@ -122,8 +122,7 @@ return [
     'delCate' => 'bạn có chắc chắn muốn xóa danh mục này',
     'point' => 'Điểm',
     'apply' => 'áp dụng khuyến mãi:',
-    '0k' => '0k',
-    '1k' => '500k',
-    '2k' => '1 tr',
-    '3k' => '2 tr',
+    'discount' => 'Khuyến mãi',
+    'afterPromotion' => 'giá sau khuyến mãi',
+    'k' => 'k',
 ];

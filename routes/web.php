@@ -23,6 +23,7 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('delete/{id}', 'CartController@getDeleteCart');
     Route::get('update', 'CartController@getUpdateCart');
     Route::post('show', 'CartController@postComplete')->name('cart');
+    Route::post('/autocomplete/discount', 'CartController@fetchDiscount')->name('autocomplete.discount');
 });
 Route::group(['prefix' => 'user'], function() {
     route::get('/', 'UserController@getLogin')->name('customer');

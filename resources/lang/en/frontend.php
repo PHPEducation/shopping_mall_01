@@ -119,8 +119,7 @@ return [
     'delCate' => 'Are you sure you want to delete',
     'point' => 'Point',
     'apply' => 'Apply promotion',
-    '0k' => '0k',
-    '1k' => '500k',
-    '2k' => '1 tr',
-    '3k' => '2 tr', 
+    'discount' => 'discount',
+    'afterPromotion' => 'Price after promotion',
+    'k' => 'k',
 ];
